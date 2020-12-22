@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="myCanvas"></p>
+<canvas id="myCircle"></canvas>
+<script>
+    class Circle {
+        constructor(radius) {
+            this._radius = radius;
+        }
+        get radius() {
+            return this._radius;
+        }
+        set radius(value) {
+            this._radius = value;
+        }
+        getArea() {
+            return this._radius * this._radius * Math.PI;
+        }
+        getPerimeter() {
+            return this._radius * 2 * Math.PI;
+        }
+        drawCanvas() {
+            document.getElementById('myCircle').style.border = '1px solid black';
+        }
+        drawCircle() {
+            let circle = document.getElementById('myCircle').getContext('2d');
+            circle.fillStyle = 'red';
+            circle.arc(50,50,this._radius,0,2*Math.PI);
+            circle.stroke();
+        }
+        getInfoCircle() {
+            document.getElementById('myCanvas').innerHTML = 'Ban kinh = ' +this._radius+ ' Chu vi = ' +this.getPerimeter()+ ' Dien tich = '+this.getArea();
+            return 'Ban kinh = ' +this._radius+ ' Chu vi = ' +this.getPerimeter()+ ' Dien tich = '+this.getArea();
+        }
+    }
+    let circle = new Circle(30);
+    circle.drawCanvas();
+    circle.drawCircle();
+    circle.getInfoCircle();
+</script>
+</body>
+</html>
